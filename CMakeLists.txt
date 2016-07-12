@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.6)
 project(Sauerkraut)
 
-set(CMAKE_CXX_FLAGS "-Werror -g -O0 -std=c++11 --coverage")
+set(CMAKE_CXX_FLAGS "-Werror -g -O0 -std=c++14")
 set(CMAKE_BUILD_TYPE Debug)
 set(UNITTEST_EXE "${PROJECT_BINARY_DIR}/unittest/unittest")
 

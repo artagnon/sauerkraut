@@ -11,6 +11,6 @@ $ cmake -GNinja ..
 $ ninja check
 ```
 
-Primary reference materials:
+## Primary reference materials
 1. [http://people.freebsd.org/~lstewart/articles/cpumemory.pdf](What Every
 Programmer should know about Memory, Drepper)
