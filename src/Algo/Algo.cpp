@@ -13,11 +13,12 @@ size_t cache_line_size() {
 
 void clsMultiply(int **mul1, int **mul2, int **res, int N) {
   auto SM = cache_line_size() / sizeof(int);
-  int *rres, *rmul1, *rmul2;
+  int *rres = nullptr, *rmul1 = nullptr, *rmul2 = nullptr;
+  int i2 = 0, j2 = 0, k2 = 0;
   for (int i = 0; i < N; i += SM)
     for (int j = 0; j < N; j += SM)
       for (int k = 0; k < N; k += SM)
-        for (int i2 = 0, rres = &res[i][j], rmul1 = &mul1[i][k]; i2 < SM;
+        for (i2 = 0, rres = &res[i][j], rmul1 = &mul1[i][k]; i2 < SM;
              ++i2, rres += N, rmul1 += N)
           for (k2 = 0, rmul2 = &mul2[k][j]; k2 < SM; ++k2, rmul2 += N)
             for (j2 = 0; j2 < SM; ++j2)
