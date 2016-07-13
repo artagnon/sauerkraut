@@ -10,15 +10,10 @@ compile-time using templates; we use static sizes for simplicity, again.
 $ cd sauerkraut-build
 $ cmake -GNinja ..
 $ ninja check
+$ ninja timing
 ```
 
-This validates all algorithms.
-
-For timing data,
-
-```sh
-$ src/Toplevel/sauerkraut
-```
+This validates all algorithms, and gets timing data.
 
 The tiled parallel multiply takes 1.7 seconds, while the tiled serial one takes
 0.8 seconds, on my machine. This is probably due to the cost of spawning threads
