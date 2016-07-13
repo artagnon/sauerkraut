@@ -8,28 +8,39 @@
 
 using namespace sauerkraut;
 
-static constexpr size_t SZ = 512;
+class Helper {
+public:
+  static constexpr size_t SZ = 512;
+  int mul1[SZ][SZ] = {0}, mul2[SZ][SZ] = {0}, res[SZ][SZ] = {0};
 
-void randomizeInputMatrices(int (&mul1)[SZ][SZ], int (&mul2)[SZ][SZ]) {
-  std::srand(std::time(0));
-  for (int i = 0; i < SZ; ++i)
-    for (int j = 0; j < SZ; ++j) {
-      mul1[i][j] = std::rand() % 100;
-      mul2[i][j] = std::rand() % 100;
-    }
-}
+  /// Random-initializes mul1 and mul2.
+  void randomizeInputMatrices() {
+    std::srand(std::time(0));
+    for (int i = 0; i < SZ; ++i)
+      for (int j = 0; j < SZ; ++j) {
+        mul1[i][j] = std::rand() % 100;
+        mul2[i][j] = std::rand() % 100;
+      }
+  }
+
+  /// Does tiledMultiply without regard for the result.
+  void tiledMultiply() { ::tiledMultiply(mul1, mul2, res); }
+
+  /// Does parallelMultiply without regard for the result.
+  void parallelMultiply() { ::parallelMultiply(mul1, mul2, res); }
+};
 
 int main() {
-  int mul1[SZ][SZ] = {0}, mul2[SZ][SZ] = {0}, res[SZ][SZ] = {0};
-  randomizeInputMatrices(mul1, mul2);
+  Helper helper;
+  helper.randomizeInputMatrices();
 
   std::clock_t begin = std::clock();
-  tiledMultiply(mul1, mul2, res);
+  helper.tiledMultiply();
   std::clock_t end = std::clock();
   double tiledTime = double(end - begin) / CLOCKS_PER_SEC;
 
   begin = std::clock();
-  parallelMultiply(mul1, mul2, res);
+  helper.parallelMultiply();
   end = std::clock();
   double parallelTime = double(end - begin) / CLOCKS_PER_SEC;
 
