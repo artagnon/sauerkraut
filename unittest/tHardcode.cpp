@@ -10,6 +10,8 @@ class HardcodeFixture : public ::testing::Test {
 protected:
   int mul1[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}},
       mul2[3][3] = {{10, 11, 12}, {13, 14, 15}, {16, 17, 18}}, res[3][3] = {0};
+
+  /// This data was obtained by running the serial version.
   void validate() {
     ASSERT_EQ(res[0][0], 84);
     ASSERT_EQ(res[0][1], 90);

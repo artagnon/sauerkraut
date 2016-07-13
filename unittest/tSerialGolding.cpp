@@ -31,7 +31,7 @@ protected:
                                          << j << "]" << std::endl;
   }
 
-  /// Version for Parallel Matrix Multiply
+  /// Version for Parallel Matrix Multiply.
   void validate(std::atomic<int> (&res)[SZ][SZ]) {
     serialMultiply(mul1, mul2, gold);
     for (int i = 0; i < SZ; ++i)
