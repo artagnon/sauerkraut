@@ -20,8 +20,7 @@ void randomizeInputMatrices(int (&mul1)[SZ][SZ], int (&mul2)[SZ][SZ]) {
 }
 
 int main() {
-  int mul1[SZ][SZ], mul2[SZ][SZ], res[SZ][SZ];
-  std::atomic<int> res2[SZ][SZ] = {};
+  int mul1[SZ][SZ] = {0}, mul2[SZ][SZ] = {0}, res[SZ][SZ] = {0};
   randomizeInputMatrices(mul1, mul2);
 
   std::clock_t begin = std::clock();
@@ -30,7 +29,7 @@ int main() {
   double tiledTime = double(end - begin) / CLOCKS_PER_SEC;
 
   begin = std::clock();
-  parallelMultiply(mul1, mul2, res2);
+  parallelMultiply(mul1, mul2, res);
   end = std::clock();
   double parallelTime = double(end - begin) / CLOCKS_PER_SEC;
 

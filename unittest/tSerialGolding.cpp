@@ -30,15 +30,6 @@ protected:
         ASSERT_EQ(res[i][j], gold[i][j]) << "Match failed for [" << i << "]["
                                          << j << "]" << std::endl;
   }
-
-  /// Version for Parallel Matrix Multiply.
-  void validate(std::atomic<int> (&res)[SZ][SZ]) {
-    serialMultiply(mul1, mul2, gold);
-    for (int i = 0; i < SZ; ++i)
-      for (int j = 0; j < SZ; ++j)
-        ASSERT_EQ(res[i][j], gold[i][j]) << "Match failed for [" << i << "]["
-                                         << j << "]" << std::endl;
-  }
 };
 
 TEST_F(SerialGolding, TiledMultiply) {
@@ -49,7 +40,6 @@ TEST_F(SerialGolding, TiledMultiply) {
 
 TEST_F(SerialGolding, ParallelMultiply) {
   randomizeInputMatrices();
-  std::atomic<int> res[SZ][SZ] = {};
   parallelMultiply(mul1, mul2, res);
-  validate(res);
+  validate();
 }

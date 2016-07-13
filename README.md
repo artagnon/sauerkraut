@@ -20,7 +20,7 @@ For timing data,
 $ src/Toplevel/sauerkraut
 ```
 
-The tiled parallel multiply takes 2.7 seconds, while the tiled serial one takes
+The tiled parallel multiply takes 1.7 seconds, while the tiled serial one takes
 0.8 seconds, on my machine. This is probably due to the cost of spawning threads
 for a tiny matrix.
 
