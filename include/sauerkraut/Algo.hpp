@@ -63,7 +63,7 @@ void tiledMultiply(int (&mul1)[N][N], int (&mul2)[N][N], int (&res)[N][N]) {
 typedef std::vector<std::tuple<int, int, int>> container;
 typedef container::iterator iter;
 
-/// Uses C++11 concurrency features to speed up tiling parallel matrix multiply.
+/// Uses C++11 concurrency features to speed up tiled matrix multiply.
 template <size_t N>
 void parallelMultiply(int (&mul1)[N][N], int (&mul2)[N][N], int (&res)[N][N]) {
   unsigned Nthreads = std::thread::hardware_concurrency();
