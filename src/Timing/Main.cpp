@@ -3,6 +3,7 @@
 #include <atomic>
 #include <ctime> // I don't like std::chrono
 #include <iostream>
+#include <vector>
 
 #include "sauerkraut/Algo.hpp"
 
@@ -10,24 +11,26 @@ using namespace sauerkraut;
 
 class Helper {
 public:
-  static constexpr size_t SZ = 512;
-  int mul1[SZ][SZ] = {0}, mul2[SZ][SZ] = {0}, res[SZ][SZ] = {0};
+  static constexpr size_t SZ = 2048;
+  std::vector<int> mul1, mul2, res;
+
+  Helper() : mul1(SZ * SZ), mul2(SZ * SZ), res(SZ * SZ) {}
 
   /// Random-initializes mul1 and mul2.
   void randomizeInputMatrices() {
     std::srand(std::time(0));
     for (int i = 0; i < SZ; ++i)
       for (int j = 0; j < SZ; ++j) {
-        mul1[i][j] = std::rand() % 100;
-        mul2[i][j] = std::rand() % 100;
+        mul1[SZ * i + j] = std::rand() % 100;
+        mul2[SZ * i + j] = std::rand() % 100;
       }
   }
 
   /// Does tiledMultiply without regard for the result.
-  void tiledMultiply() { ::tiledMultiply(mul1, mul2, res); }
+  void tiledMultiply() { ::tiledMultiply<SZ>(mul1, mul2, res); }
 
   /// Does parallelMultiply without regard for the result.
-  void parallelMultiply() { ::parallelMultiply(mul1, mul2, res); }
+  void parallelMultiply() { ::parallelMultiply<SZ>(mul1, mul2, res); }
 };
 
 int main() {

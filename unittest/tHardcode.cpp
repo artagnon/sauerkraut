@@ -4,38 +4,42 @@
 #include "sauerkraut/Algo.hpp"
 #include "gtest/gtest.h"
 
+#include <vector>
+
 using namespace sauerkraut;
 
 class HardcodeFixture : public ::testing::Test {
 protected:
-  int mul1[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}},
-      mul2[3][3] = {{10, 11, 12}, {13, 14, 15}, {16, 17, 18}}, res[3][3] = {0};
+  std::vector<int> mul1 = {1, 2, 3, 4, 5, 6, 7, 8, 9},
+                   mul2 = {10, 11, 12, 13, 14, 15, 16, 17, 18}, res;
+
+  HardcodeFixture() : res(9) {}
 
   /// This data was obtained by running the serial version.
   void validate() {
-    ASSERT_EQ(res[0][0], 84);
-    ASSERT_EQ(res[0][1], 90);
-    ASSERT_EQ(res[0][2], 96);
-    ASSERT_EQ(res[1][0], 201);
-    ASSERT_EQ(res[1][1], 216);
-    ASSERT_EQ(res[1][2], 231);
-    ASSERT_EQ(res[2][0], 318);
-    ASSERT_EQ(res[2][1], 342);
-    ASSERT_EQ(res[2][2], 366);
+    ASSERT_EQ(res[0], 84);
+    ASSERT_EQ(res[1], 90);
+    ASSERT_EQ(res[2], 96);
+    ASSERT_EQ(res[3], 201);
+    ASSERT_EQ(res[4], 216);
+    ASSERT_EQ(res[5], 231);
+    ASSERT_EQ(res[6], 318);
+    ASSERT_EQ(res[7], 342);
+    ASSERT_EQ(res[8], 366);
   }
 };
 
 TEST_F(HardcodeFixture, BasicSerial) {
-  serialMultiply(mul1, mul2, res);
+  serialMultiply<3>(mul1, mul2, res);
   validate();
 }
 
 TEST_F(HardcodeFixture, BasicTranspose) {
-  transposeMultiply(mul1, mul2, res);
+  transposeMultiply<3>(mul1, mul2, res);
   validate();
 }
 
 TEST_F(HardcodeFixture, TiledMultiply) {
-  tiledMultiply(mul1, mul2, res);
+  tiledMultiply<3>(mul1, mul2, res);
   validate();
 }
