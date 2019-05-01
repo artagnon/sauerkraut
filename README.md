@@ -20,9 +20,6 @@ The tiled parallel multiply takes 1.7 seconds, while the tiled serial one takes
 for a tiny matrix.
 
 ## Primary reference materials
-1. [http://people.freebsd.org/~lstewart/articles/cpumemory.pdf](What Every
-Programmer should know about Memory, Drepper)
-2. [http://www.ccs.neu.edu/home/mirek/classes/2011-F-CS6240/Slides/Lecture2-large.pdf]
-(Lecture Notes, Mirek)
-3. [http://www.cs.cmu.edu/~15210/pasl.html](Introduction to Parallel Computing
-in C++, Acar/Chargueraud/Rainey)
+1. [What Every Programmer should know about Memory, Drepper](http://people.freebsd.org/~lstewart/articles/cpumemory.pdf)
+2. [Lecture Notes, Mirek](http://www.ccs.neu.edu/home/mirek/classes/2011-F-CS6240/Slides/Lecture2-large.pdf)
+3. [Introduction to Parallel Computing in C++, Acar/Chargueraud/Rainey](http://www.cs.cmu.edu/~15210/pasl.html)
